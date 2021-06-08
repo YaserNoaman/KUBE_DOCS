@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deploy-object
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sample-pod
+  template:
+    metadata:
+      labels:
+        app: sample-pod
+    spec:
+      containers:
+      - name: sample-container
+        image: yasernoaman/repo1:jenkins
+        ports: 
+        - containerPort: 8080   

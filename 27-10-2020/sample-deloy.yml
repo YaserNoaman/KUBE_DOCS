@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sample-pod
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: sample-pod
+        env: dev
+    spec:
+     containers:
+     -  name: sample-container
+        image: jenkins
+        ports:
+        -  containerPort: 8080

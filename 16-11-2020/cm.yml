@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: sample-app
+spec:
+  containers:
+  - name: sample-container
+    image: tomcat
+    ports:
+    - containerPort: 8080
+    volumeMounts:
+    - mountPath: /HELLO
+      name: sample-volume
+  volumes:
+    name: sample-volume
+    configMap:
+      name: game-config
+      items:
+      - key: hell.properties
+        path: config.xml
+    
+    

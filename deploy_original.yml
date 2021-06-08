@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sample-pod
+  template:
+    metadata:
+      labels:
+        app: sample-pod
+    spec:
+      containers:
+        - name: tomcat-container
+          image: yasernoaman/repo1:tomcatimage
+          ports:
+          - containerPort: 8080

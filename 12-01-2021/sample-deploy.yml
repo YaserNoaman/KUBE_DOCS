@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deploy
+  namespace: yaser
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sample-pod
+  template:
+    metadata:
+      labels:
+        app: sample-pod
+    spec:
+       containers:
+       - name: sample-container
+         image: tomcat
+         ports:
+         - containerPort: 8080
+         volumeMounts:
+         - mountPath: /tmp
+           name: sample-config-volume
+         env:
+          - name: secret-env
+            valueFrom:
+               secretKeyRef:
+                 name: customsecret
+                 key: username
+          - name: secret-env
+            valueFrom:
+               secretKeyRef:
+                 name: customsecret
+                 key: password
+       volumes:
+       - name: sample-config-volume
+         configMap:
+           name: customconfig
+           items:
+           - key: boot.preperties 
+             path: hi.conf
+           

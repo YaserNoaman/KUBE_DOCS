@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: sample-pod
+   namespace: noaman
+   labels:
+     env: non-prod
+spec:
+   containers:
+   - name: sample-container
+     image: tomcat
+     ports:
+     - containerPort: 8080
+

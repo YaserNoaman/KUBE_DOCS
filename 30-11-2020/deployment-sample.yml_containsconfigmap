@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deploy-object
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sample-pod
+  template:
+    metadata:
+      labels:
+        app: sample-pod
+    spec:
+      containers:
+      - name: sample-container
+        image: tomcat
+        ports: 
+        - containerPort: 8080  
+        volumeMounts:
+        - mountPath: /tmp
+          name: sample-volume
+      volumes:
+      - name: sample-volume
+        configMap:
+          name: custommap 
+          items: 
+          - key: user.properties
+            path: user.conf

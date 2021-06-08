@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+       app: sample-pod
+  template:
+    metadata:
+      labels:
+         app: sample-pod
+         env: dev
+    spec:
+      containers:
+      - name: sample-tomcat
+        image: tomcat
+        ports:
+        - containerPort: 8080

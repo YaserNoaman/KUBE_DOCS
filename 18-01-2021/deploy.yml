@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+   name: sample-deploy
+   namespace: noaman-ns
+spec:
+   replicas: 3
+   selector:
+     matchLabels:
+        app: sample-pod
+   template:
+     metadata:
+       labels:
+         app: sample-pod
+             
+     spec:
+       containers:
+       - name: sample-container
+         image: jenkins
+         ports:
+         - containerPort: 8080
+       - name: sample-container-tomcat
+         image: tomcat
+         ports:
+         - containerPort: 8080
+
+
+#         volumeMounts:
+#         -  mountPath: /tmp
+#            name: config-volume
+#       volumes:
+#       - name: config-volume
+#         configMap:
+#           name: sample-configmap
+#           items:
+#           - key: boot.properties
+#             path: hell.conf      
+ 
